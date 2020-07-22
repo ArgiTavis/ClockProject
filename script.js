@@ -1,9 +1,3 @@
-const makeDropDown = () => {
-    for (i = 0; i <= 11; i++){
-        console.log (1+i);
-    }
-}
-
 let today = new Date();
 let hours24 = today.getHours();
 let minutes = today.getMinutes();
@@ -20,6 +14,49 @@ if (hours24 == 0) {
 }
 
 
+let emptyArray = [];
+
+const makingArray = () =>{
+    for (let i = 1; i <= 24; i++) {
+        emptyArray.push(i);
+        
+    }
+    return emptyArray;
+}
+
+
+
+
+const addButtonsToDOM = (element) =>{
+    TOD = 'AM'
+    const select = document.getElementById('options');
+    const option = document.createElement('OPTION')
+    option.setAttribute('value',element)
+    if (element >= 12){
+        element = element - 12
+        TOD = 'PM'
+        }
+    if (element == 12){
+        TOD = 'AM'
+    }
+    if (element == 0){
+        element = 12
+        TOD = 'PM'
+    }
+    option.innerHTML = element + ' ' + TOD
+    select.appendChild(option)
+
+}
+
+
+const createButtons = (array) =>{
+    array.forEach(element => addButtonsToDOM(element));
+}
+
+createButtons(makingArray());
+
+
+
 
 
 
@@ -29,13 +66,17 @@ let select = document.getElementById('options');
 
 
 const testScript = () =>{
-    if (`${event.target.value}` == hours12){
+    if (`${event.target.value}` == hours24){
         alert('holy crap batman we did it!');
     }
 
 }
 
+
 select.addEventListener("change", testScript);
+
+// let oneSecond = 1000;
+// setInterval(testScript,oneSecond);
 
 
 
