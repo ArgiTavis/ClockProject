@@ -14,9 +14,9 @@ if (hours24 == 0) {
 }
 
 
-let emptyArray = [];
 
 const makingArray = () =>{
+    let emptyArray = [];
     for (let i = 0; i <= 23; i++) {
         emptyArray.push(i);
         
@@ -70,6 +70,8 @@ const testScript = () =>{
 
 
 select.addEventListener("change", testScript);
+
+//Making the selection event listner
 
 // let oneSecond = 1000;
 // setInterval(testScript,oneSecond);
