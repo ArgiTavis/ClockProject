@@ -17,7 +17,7 @@ if (hours24 == 0) {
 let emptyArray = [];
 
 const makingArray = () =>{
-    for (let i = 1; i <= 24; i++) {
+    for (let i = 0; i <= 23; i++) {
         emptyArray.push(i);
         
     }
@@ -36,12 +36,8 @@ const addButtonsToDOM = (element) =>{
         element = element - 12
         TOD = 'PM'
         }
-    if (element == 12){
-        TOD = 'AM'
-    }
     if (element == 0){
         element = 12
-        TOD = 'PM'
     }
     option.innerHTML = element + ' ' + TOD
     select.appendChild(option)
