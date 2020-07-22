@@ -1,17 +1,23 @@
-let today = new Date();
-let hours24 = today.getHours();
-let minutes = today.getMinutes();
-let seconds = today.getSeconds();
-let tod = 'AM';
-let hours12 = hours24;
-
-if (hours24 >= 12){
-    hours12 = hours24 - 12;
-    tod = 'PM'
-} 
-if (hours24 == 0) {
-    hours12 = 12;
+const makeTime = () => {
+    let today = new Date();
+    let hours24 = today.getHours();
+    let minutes = today.getMinutes();
+    let seconds = today.getSeconds();
+    let tod = 'AM';
+    let hours12 = hours24;
+    
+    if (hours24 >= 12){
+        hours12 = hours24 - 12;
+        tod = 'PM'
+    } 
+    if (hours24 == 0) {
+        hours12 = 12;
+    }
+    let time = {"hours": hours12, "minutes": minutes, "seconds": seconds, "tod": tod};
+    return time;
+    
 }
+
 
 
 
@@ -43,6 +49,13 @@ const addButtonsToDOM = (element) =>{
     select.appendChild(option)
 
 }
+
+const addTimeToDom = () =>{
+const time = makeTime();
+console.log(time.tod);
+}
+
+
 
 
 const createButtons = (array) =>{
