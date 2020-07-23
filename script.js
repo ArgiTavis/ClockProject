@@ -5,7 +5,9 @@ const makeTime = () => {
     let seconds = today.getSeconds();
     let tod = 'AM';
     let hours12 = hours24;
-    
+    if (seconds < 10){
+        seconds = '0' + seconds;
+    }
     if (hours24 >= 12){
         hours12 = hours24 - 12;
         tod = 'PM'
@@ -18,9 +20,6 @@ const makeTime = () => {
     
 }
 
-
-
-
 const makingArray = () =>{
     let emptyArray = [];
     for (let i = 0; i <= 23; i++) {
@@ -29,9 +28,6 @@ const makingArray = () =>{
     }
     return emptyArray;
 }
-
-
-
 
 const addButtonsToDOM = (element) =>{
     TOD = 'AM'
@@ -51,18 +47,32 @@ const addButtonsToDOM = (element) =>{
 }
 
 const addTimeToDom = () =>{
-const time = makeTime();
-console.log(time.tod);
+    const time = makeTime();
+    const fullTime = time.hours + ':' + time.minutes + ':' + time.seconds + ' ' + time.tod;
+    const timeTag = document.getElementById('time');
+    timeTag.innerHTML = fullTime;
+    setInterval(addTimeToDom, 1000)
 }
 
 
 
 
-const createButtons = (array) =>{
+
+
+const createButtons = (array) => {
     array.forEach(element => addButtonsToDOM(element));
 }
 
+// const refreshTime = () =>{
+//     let oneSecond = 1000;
+//     setInterval(addTimeToDom,oneSecond)
+// }
+
+
+
 createButtons(makingArray());
+addTimeToDom();
+
 
 
 
@@ -85,23 +95,7 @@ const testScript = () =>{
 select.addEventListener("change", testScript);
 
 //Making the selection event listner
-
 // let oneSecond = 1000;
 // setInterval(testScript,oneSecond);
-
-
-
-
-
-
-
-
-
-
-//
-// const addTimeToDom = () =>{
-
-// }
-
 // makeDropDown();
 // makeTime();
