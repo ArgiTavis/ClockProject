@@ -1,4 +1,4 @@
-const makeTime = () => {
+const createTime = () => {
     let today = new Date();
     let hours24 = today.getHours();
     let minutes = today.getMinutes();
@@ -47,7 +47,7 @@ const addButtonsToDOM = (element) =>{
 }
 
 const addTimeToDom = () =>{
-    const time = makeTime();
+    const time = createTime();
     const fullTime = time.hours + ':' + time.minutes + ':' + time.seconds + ' ' + time.tod;
     const timeTag = document.getElementById('time');
     timeTag.innerHTML = fullTime;
