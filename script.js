@@ -4,18 +4,20 @@ const createTime = () => {
     let minutes = today.getMinutes();
     let seconds = today.getSeconds();
     let tod = 'AM';
-    let hours12 = hours24;
+    let hours12 = hours24 % 12 || 12;
     if (seconds < 10){
         seconds = '0' + seconds;
     }
     if (hours24 >= 12){
-        hours12 = hours24 - 12;
         tod = 'PM'
     } 
     if (hours24 == 0) {
         hours12 = 12;
     }
-    let time = {"hours": hours12, "minutes": minutes, "seconds": seconds, "tod": tod};
+    if (minutes < 10){
+        minutes = '0' + minutes
+    }
+    let time = {"hours12": hours12, "minutes": minutes, "seconds": seconds, "tod": tod, "hours24":hours24};
     return time;
     
 }
@@ -48,30 +50,32 @@ const addButtonsToDOM = (element) =>{
 
 const addTimeToDom = () =>{
     const time = createTime();
-    const fullTime = time.hours + ':' + time.minutes + ':' + time.seconds + ' ' + time.tod;
+    const fullTime = time.hours12 + ':' + time.minutes + ':' + time.seconds + ' ' + time.tod;
     const timeTag = document.getElementById('time');
     timeTag.innerHTML = fullTime;
     setInterval(addTimeToDom, 1000)
 }
 
-
-
-
-
-
 const createButtons = (array) => {
     array.forEach(element => addButtonsToDOM(element));
 }
 
-// const refreshTime = () =>{
-//     let oneSecond = 1000;
-//     setInterval(addTimeToDom,oneSecond)
-// }
+const checkForValue = () =>{
+    let time = createTime();
+    let timeSelected = 1;
+    let chosenTime = document.getElementById('options');
+    chosenTime.addEventListener('change', changeTimeSelected);
+            console.log(timeSelected)
+    }
 
-
+const changeTimeSelected = () =>{
+    timeSelected = `${event.target.value}` 
+    if(timeSelected = time.hours24){
+        alert('Time')};}
 
 createButtons(makingArray());
 addTimeToDom();
+checkForValue();
 
 
 
@@ -80,22 +84,17 @@ addTimeToDom();
 
 
 
-let select = document.getElementById('options');
+//timeSelected
 
-
-
-const testScript = () =>{
-    if (`${event.target.value}` == hours24){
-        alert('holy crap batman we did it!');
-    }
-
-}
-
-
-select.addEventListener("change", testScript);
+//select.addEventListener("change", testScript);
 
 //Making the selection event listner
 // let oneSecond = 1000;
 // setInterval(testScript,oneSecond);
 // makeDropDown();
 // makeTime();
+
+// const refreshTime = () =>{
+//     let oneSecond = 1000;
+//     setInterval(addTimeToDom,oneSecond)
+// }
